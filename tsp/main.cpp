@@ -24,6 +24,7 @@ int main(int argc, char** argv) {
     fi->initialize(g);
     fi->algorithm(g);
     fi->print(g);
+    
     fi->clear();    
     
     

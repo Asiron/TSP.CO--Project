@@ -11,16 +11,26 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <iostream>
+
 using namespace std;
 
-//generator grafu pełnego o zadanej liczbie wierzchołków i maksymalnej wadze krawędzi
-void graph_generate(int n, int max_length);
 
-//zwolnienie pamięci po grafie
-void graph_delete(int n);
+class Graph{
+public:
 
-//wypisanie grafu na ekran
-void graph_print(int n);
+    //macierz sąsiedztwa
+    int **graph;
+    //ilosc wierzcholkow
+    int n;
+        
+    //generator grafu pełnego o zadanej liczbie wierzchołków i maksymalnej wadze krawędzi
+    Graph(int n, int max_length);
 
+    //zwolnienie pamięci po grafie
+    ~Graph();
+
+    //wypisanie grafu na ekran
+    void graph_print();
+};
 #endif	/* GRAF_H */
 

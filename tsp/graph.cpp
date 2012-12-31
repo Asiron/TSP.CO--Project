@@ -1,11 +1,11 @@
 #include "graph.h"
 
-//macierz sąsiedztwa
-int **graph;
+
 
 //generator grafu pełnego o zadanej liczbie wierzchołków i maksymalnej wadze krawędzi
-void graph_generate(int n, int max_length){
-    
+Graph::Graph(int n, int max_length){
+   
+    this->n = n;
 //alokacja pamięci
     graph = new int*[n];
     
@@ -28,7 +28,7 @@ void graph_generate(int n, int max_length){
 }
 
 //zwolnienie pamięci po grafie
-void graph_delete(int n){
+Graph::~Graph(){
     for(int i=0; i < n; ++i){
         delete [] graph[i];
     }
@@ -36,7 +36,7 @@ void graph_delete(int n){
 }
 
 //wypisanie grafu na ekran
-void graph_print(int n){
+void Graph::graph_print(){
     
     for(int i = 0; i < n; ++i){
         for(int j = 0; j < n; ++j){

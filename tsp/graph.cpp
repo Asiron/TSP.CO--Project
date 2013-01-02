@@ -18,7 +18,7 @@ Graph::Graph(int n, int max_length){
     for(int i = 0; i < n; ++i){
         for(int j = 0; j < n; ++j){
             if(i!=j){
-                graph[i][j] = rand() % max_length +1;
+                graph[i][j] = graph [j][i] = rand() % max_length +1;
             }else{
                 graph[i][j] = 0;
             }

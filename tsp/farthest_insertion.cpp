@@ -20,7 +20,7 @@ void Farthest_insertion::algorithm(Graph *g){
     fi_visited[0] = true;
     fi_path_length++;
     
-    temp_node = search_farthest_node(g);
+    temp_node = search_farthest_node(g);   
     fi_path.push_back(temp_node);
     fi_visited[temp_node] = true;
     fi_path_length++;
@@ -35,14 +35,14 @@ void Farthest_insertion::algorithm(Graph *g){
 /////////////////////////////////////////////////////////////////////////////////
 int Farthest_insertion::search_farthest_node(Graph *g){
     int farthest_node = -1;
-    int distance = 0;
+    int distance = -1;
     
     for(int i = 1; i < g->n; ++i){
         if(!fi_visited[i]){
             int min_edge = 99999999;
             for(fi_list_it = fi_path.begin(); fi_list_it != fi_path.end(); ++fi_list_it){
-                if(g->graph[i][*fi_list_it] < min_edge){
-                    min_edge = g->graph[i][*fi_list_it];
+                if(g->graph[*fi_list_it][i] < min_edge){
+                    min_edge = g->graph[*fi_list_it][i];
                 }
             }
             if(min_edge > distance){

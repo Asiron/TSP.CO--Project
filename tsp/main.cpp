@@ -17,7 +17,7 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    Graph *g = new Graph(20,10); 
+    Graph *g = new Graph(10,10); 
     g->graph_print();
     
     Farthest_insertion *fi = new Farthest_insertion();

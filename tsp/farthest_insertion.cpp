@@ -50,8 +50,7 @@ int Farthest_insertion::search_farthest_node(Graph *g){
                 } 
             }
         }
-    }
-cout<< farthest_node<< endl;    
+    }   
 return farthest_node;    
 }
 

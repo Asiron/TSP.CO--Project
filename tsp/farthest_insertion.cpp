@@ -43,14 +43,15 @@ int Farthest_insertion::search_farthest_node(Graph *g){
             for(fi_list_it = fi_path.begin(); fi_list_it != fi_path.end(); ++fi_list_it){
                 if(g->graph[*fi_list_it][i] < min_edge){
                     min_edge = g->graph[*fi_list_it][i];
-                }
-            }
-            if(min_edge > distance){
-                farthest_node = i;
+                    if(min_edge > distance){
+                        distance = min_edge;
+                        farthest_node = i;
+                    }
+                } 
             }
         }
     }
-    
+cout<< farthest_node<< endl;    
 return farthest_node;    
 }
 

@@ -10,6 +10,7 @@
 #include <iostream>
 #include "graph.h"
 #include "farthest_insertion.h"
+#include "ant_colony.h"
 
 using namespace std;
 
@@ -25,8 +26,13 @@ int main(int argc, char** argv) {
     fi->algorithm(g);
     fi->print(g);
     
-    fi->clear();    
+    fi->clear();
+    delete fi;
     
+    Ant_colony *ac = new Ant_colony(g, 1, 0.2, 5);
+    ac->algorithm(g, 10);
+    ac->print();
+    delete ac;
     
     delete g;
     

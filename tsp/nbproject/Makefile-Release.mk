@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/graph.o \
+	${OBJECTDIR}/ant_colony.o \
 	${OBJECTDIR}/farthest_insertion.o
 
 
@@ -73,6 +74,11 @@ ${OBJECTDIR}/graph.o: graph.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/graph.o graph.cpp
+
+${OBJECTDIR}/ant_colony.o: ant_colony.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ant_colony.o ant_colony.cpp
 
 ${OBJECTDIR}/farthest_insertion.o: farthest_insertion.cpp 
 	${MKDIR} -p ${OBJECTDIR}

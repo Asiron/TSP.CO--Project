@@ -25,6 +25,8 @@ private:
     float **pheromones;
     //liczba mrówek
     int ant_number;
+    //parametry funkcji prawdop.
+    int alpha, beta;
     //tablica mrówek;
     Ant **ant_array;
     //współczynnik odparowania
@@ -38,6 +40,8 @@ private:
     void pheromone_increase();
     //usunięcie mrówek
     void delete_ants();
+    //sprawdzenie lokalnych ścieżek mrówek
+    void check_paths();
     
 public:
     //najlepsza ścieżka
@@ -45,7 +49,7 @@ public:
     //dlugosc najlepszej trasy
     int best_path_length;
     //evapor z zakresu (0,1);
-    Ant_colony(Graph *g, float start_pher, float evapor, int ant_num);
+    Ant_colony(Graph* g, float start_pher, float evapor, int ant_num, int aplpha, int beta);
     ~Ant_colony();
     //wykonanie się algorytmu, w efekcie znalezienie cyklu
     void algorithm(Graph *g, int iter_num);
@@ -62,6 +66,8 @@ private:
     float *probabilistic;
     //ilość odwiedzonych wierzcholkow
     int visited_nodes_counter;
+    //parametry funkcji prawd.
+    float alpha, beta;
     
     //obliczanie prawdopodobieństw wybrania danego miasta jako następnego
     void calculate_prob(float **pheromones, Graph *g);
@@ -78,7 +84,7 @@ public:
     int path_length;
     
     Ant();
-    Ant(Graph *g);
+    Ant(Graph *g, float alpha, float beta);
     ~Ant();
     void find_path(Graph *g, float **pheromones);
     void print();

@@ -18,8 +18,8 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    Graph *g = new Graph(10,10); 
-    g->graph_print();
+    Graph *g = new Graph(100,10); 
+    //g->graph_print();
     
     Farthest_insertion *fi = new Farthest_insertion();
     fi->initialize(g);
@@ -29,8 +29,21 @@ int main(int argc, char** argv) {
     fi->clear();
     delete fi;
     
-    Ant_colony *ac = new Ant_colony(g, 1, 0.2, 5);
-    ac->algorithm(g, 10);
+    srand(time(NULL));
+    //graf, pocz. poziom feromonu, współczynnik odparowania feromonu, ilość mrówek, alfa, beta
+    Ant_colony *ac = new Ant_colony(g, 1, 0.5, 20, 1, 5);
+    //graf, ilość iteracji
+    ac->algorithm(g, 20);
+    ac->print();
+    delete ac;
+    
+    ac = new Ant_colony(g, 1, 0.5, 100, 1, 5);
+    ac->algorithm(g, 20);
+    ac->print();
+    delete ac;
+    
+    ac = new Ant_colony(g, 1, 0.5, 100, 1, 5);
+    ac->algorithm(g, 50);
     ac->print();
     delete ac;
     

@@ -6,7 +6,7 @@
 Ant::Ant(){
 }
 
-Ant::Ant(Graph* g){
+Ant::Ant(Graph* g, float alpha, float beta){
     visited = new bool[g->n];
     for(int j = 0; j < g->n; ++j){
         visited[j] = false;
@@ -14,13 +14,19 @@ Ant::Ant(Graph* g){
     
     probabilistic = new float[g->n];
  
+    this->alpha = alpha;
+    this->beta = beta;
+    
     //losowanie miasta poczatkowego
-    srand(time(NULL));
     int i = rand() % g->n;
     path.push_back(i);
     visited[i] = true;
     path_length = 0;
     visited_nodes_counter = 1;
+    
+//    
+//    cout<<"start: "<<i<<endl;
+//
 }
 
 Ant::~Ant(){
@@ -34,7 +40,7 @@ float Ant::denominator(int node, Graph *g, float **pheromones){
     
     for(int i = 0; i < g->n; ++i){
         if(!visited[i]){
-            result = result + (pheromones[node][i] / g->graph[node][i]);
+            result = result + (pheromones[node][i] / (g->graph[node][i]*g->graph[node][i]*g->graph[node][i]*g->graph[node][i]*g->graph[node][i]));
         }
     }
     return result;
@@ -47,29 +53,38 @@ void Ant::calculate_prob(float **pheromones, Graph *g){
         if(visited[i]){
             probabilistic[i] = 0;
         }else{
-            probabilistic[i] = (pheromones[*it][i] / g->graph[*it][i]) / denominator(*it, g, pheromones);
+            probabilistic[i] = (pheromones[*it][i] / (g->graph[*it][i]*g->graph[*it][i]*g->graph[*it][i]*g->graph[*it][i]*g->graph[*it][i])) / denominator(*it, g, pheromones);
         }
     }
     
     for(int i = 1; i < g->n; ++i){
         probabilistic[i] += probabilistic[i-1];
     }
+ //  
+//    for(int i = 0; i < g->n; ++i){
+//        cout<<probabilistic[i]<<" ";
+//    }
+//    cout<<endl;
+//
 }
 
 int Ant::get_next_node(float **pheromones, Graph *g){
-    int next_node;
+    int next_node = -1;
     calculate_prob(pheromones, g);
-    
-    srand(time(NULL));
-    float rnd = rand() % (int)floor(probabilistic[g->n - 1]);
-    
-    if(rnd <= probabilistic[0]){
+        
+    float rnd = (float)rand() / RAND_MAX;
+//
+//   cout<<"rnd: "<<rnd<<endl;
+//   
+    if(rnd <= probabilistic[0] && !visited[0]){
         next_node = 0;
     }else{
         for(int i = 1; i < g->n; ++i){
-            if(rnd <= probabilistic[i]){
-                next_node = i;
-                break;
+            if(!visited[i]){
+                if(rnd <= probabilistic[i] && rnd > probabilistic[i-1]){
+                        next_node = i;
+                        break;
+                }
             }
         }
     }
@@ -82,10 +97,15 @@ void Ant::find_path(Graph* g, float **pheromones){
     
     while(visited_nodes_counter < g->n){
         node = get_next_node(pheromones, g);
-        it = --path.end();
+//        
+//        cout<<"next_node: "<<node<<"\n";
+//        
+        it = path.end();
+        it--;
         path_length += g->graph[*it][node];
         path.push_back(node);
         visited_nodes_counter++;
+        visited[node] = true;
     }
     
     it = --path.end();
@@ -98,11 +118,11 @@ void Ant::print(){
     for(it = path.begin(); it != path.end(); ++it){
         cout<<*it<<"  ";
     }
-    cout<<endl<<"length: "<<path_length<<endl;
+    cout<<endl<<"length: "<<path_length<<endl<<endl;
 }
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-Ant_colony::Ant_colony(Graph* g, float start_pher, float evapor, int ant_num){
+Ant_colony::Ant_colony(Graph* g, float start_pher, float evapor, int ant_num, int aplpha, int beta){
     n = g->n;
     
     pheromones = new float*[g->n];
@@ -120,11 +140,11 @@ Ant_colony::Ant_colony(Graph* g, float start_pher, float evapor, int ant_num){
     this->evaporation = evapor;
     this->ant_array = new Ant*[ant_num];
     
-    this->best_path_length = 0;
+    this->best_path_length = 99999999;
     
- /*   for(int i = 0; i < ant_num; ++i){
-        ant_array[i] = new Ant(g);
-    }*/
+    this->alpha = alpha;
+    this->beta = beta;
+    
 }
 
 Ant_colony::~Ant_colony(){
@@ -133,9 +153,9 @@ Ant_colony::~Ant_colony(){
     } 
     delete [] pheromones;
     
-    for(int i = 0; i < ant_number; ++i){
+  /*  for(int i = 0; i < ant_number; ++i){
         delete ant_array[i];
-    }
+    }*/
     delete [] ant_array;
 }
 
@@ -149,10 +169,6 @@ void Ant_colony::pheromone_evaporate(){
 
 void Ant_colony::pheromone_increase(){
     for(int i = 0; i < ant_number; ++i){
-        if(ant_array[i]->path_length > best_path_length){
-            best_path_length = ant_array[i]->path_length;
-            copy(ant_array[i]->path.begin(), ant_array[i]->path.end(), best_path.begin()); 
-        }
         list<int>::iterator it, it2;
         for(it = ant_array[i]->path.begin(); it != --ant_array[i]->path.end(); ++it){
             it2 = it;
@@ -170,11 +186,25 @@ void Ant_colony::pheromone_increase(){
 
 void Ant_colony::run_ants(Graph *g){
     for(int i = 0; i < ant_number; ++i){
-        ant_array[i] = new Ant(g);
-    }
-    for(int i = 0; i < ant_number; ++i){
+        ant_array[i] = new Ant(g, alpha, beta);
         ant_array[i]->find_path(g, pheromones);
-    } 
+//      
+//        cout<<"path "<<i<<": ";
+//        ant_array[i]->print();
+//    
+    }
+}
+
+void Ant_colony::check_paths(){
+    for(int i = 0; i < ant_number; ++i){
+        if(ant_array[i]->path_length < best_path_length){
+            best_path_length = ant_array[i]->path_length;
+            best_path.clear();
+            for(list<int>::iterator it = ant_array[i]->path.begin(); it != ant_array[i]->path.end(); ++it){
+                best_path.push_back(*it);
+            } 
+        }
+    }
 }
 
 void Ant_colony::delete_ants(){
@@ -188,13 +218,14 @@ void Ant_colony::algorithm(Graph *g, int iter_num){
         pheromone_evaporate();
         run_ants(g);
         pheromone_increase();
+        check_paths();
         delete_ants();
     }
 }
 
 void Ant_colony::print(){
     list<int>::iterator it;
-    
+    cout<<"best path: "<<"\t";
     for(it = best_path.begin(); it != best_path.end(); ++it){
         cout<<*it<<"  ";
     }

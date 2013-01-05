@@ -12,6 +12,8 @@
 #include "farthest_insertion.h"
 #include "ant_colony.h"
 #include "brute.h"
+#include "greedy.h"
+
 
 using namespace std;
 
@@ -22,11 +24,16 @@ int main(int argc, char** argv) {
     Graph *g = new Graph(10,10); 
     //g->graph_print();
     
+
     Brute *br = new Brute();
     cout<<"brute: "<<br->brutealgorithm(g)<<endl;
     br->print(g->n);
     delete br;
     
+
+    Greedy *nn = new Greedy();
+    cout<<"greedy: "<<nn->nearest_neighbour(g)<<endl;
+    delete nn;
     
     Farthest_insertion *fi = new Farthest_insertion();
     fi->initialize(g);

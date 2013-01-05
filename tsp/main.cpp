@@ -11,6 +11,7 @@
 #include "graph.h"
 #include "farthest_insertion.h"
 #include "ant_colony.h"
+#include "brute.h"
 
 using namespace std;
 
@@ -18,8 +19,14 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    Graph *g = new Graph(100,10); 
+    Graph *g = new Graph(10,10); 
     //g->graph_print();
+    
+    Brute *br = new Brute();
+    cout<<"brute: "<<br->brutealgorithm(g)<<endl;
+    br->print(g->n);
+    delete br;
+    
     
     Farthest_insertion *fi = new Farthest_insertion();
     fi->initialize(g);

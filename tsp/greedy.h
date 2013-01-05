@@ -12,7 +12,7 @@
 
 #define INF 99999999
 
-class greedy{
+class Greedy{
       private:
               bool *visited;
       public:

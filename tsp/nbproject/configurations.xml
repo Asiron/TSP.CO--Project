@@ -8,6 +8,7 @@
       <itemPath>brute.h</itemPath>
       <itemPath>farthest_insertion.h</itemPath>
       <itemPath>graph.h</itemPath>
+      <itemPath>greedy.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,6 +21,7 @@
       <itemPath>brute.cpp</itemPath>
       <itemPath>farthest_insertion.cpp</itemPath>
       <itemPath>graph.cpp</itemPath>
+      <itemPath>greedy.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"

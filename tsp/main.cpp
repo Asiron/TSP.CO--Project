@@ -11,6 +11,7 @@
 #include "graph.h"
 #include "farthest_insertion.h"
 #include "ant_colony.h"
+#include "greedy.h"
 
 using namespace std;
 
@@ -20,6 +21,9 @@ using namespace std;
 int main(int argc, char** argv) {
     Graph *g = new Graph(100,10); 
     //g->graph_print();
+    
+    Greedy *nn = new Greedy();
+    cout<<"greedy: "<<nn->nearest_neighbour(g)<<endl;
     
     Farthest_insertion *fi = new Farthest_insertion();
     fi->initialize(g);

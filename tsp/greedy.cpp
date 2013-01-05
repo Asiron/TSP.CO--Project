@@ -1,6 +1,6 @@
 #include "greedy.h"
 
-int greedy :: find_nearest(Graph *g, int point){
+int Greedy :: find_nearest(Graph *g, int point){
     int min = 0;
     int value = INF;
     for (int i = 0; i < (g -> n); i++)
@@ -12,7 +12,7 @@ int greedy :: find_nearest(Graph *g, int point){
     return min;
 }
 
-int greedy :: nearest_neighbour(Graph *g){
+int Greedy :: nearest_neighbour(Graph *g){
     int distance = 0;
     int tmp = 0;
     int next = 0;
@@ -27,5 +27,6 @@ int greedy :: nearest_neighbour(Graph *g){
               if (tmp != INF) distance += g -> graph[tmp][next];
               next = tmp;
     }
+    distance += g->graph[tmp][0];
 return distance;    
 }

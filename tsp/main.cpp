@@ -14,6 +14,7 @@
 #include "brute.h"
 #include "greedy.h"
 #include "test_operations.h"
+#include "local_search.h"
 
 
 using namespace std;
@@ -23,12 +24,13 @@ using namespace std;
  */
 int main(int argc, char** argv) {
    
-    Test_operations *brute_test, *nn_test, *fi_test, *ac_test;
+    Test_operations *brute_test, *nn_test, *fi_test, *ac_test, *ls_test;
     
     brute_test = new Test_operations("brute.csv", "Brute force algorithm");
     nn_test = new Test_operations("greedy.csv", "Nearest Neighbour algorithm");
     fi_test = new Test_operations("farthest_insertion.csv", "Farthest Insertion Algorithm");
     ac_test = new Test_operations("ant_colony.csv", "ant_colony_algorithm");
+    ls_test = new Test_operations("Local_search.csv", "local_search_algorithm");
     
     for(int i = 5; i < 12; i++){
         
@@ -44,7 +46,7 @@ int main(int argc, char** argv) {
         
         br->print(g->n);
         delete br;
-
+        /*
 
         Greedy *nn = new Greedy();
         
@@ -76,7 +78,19 @@ int main(int argc, char** argv) {
         ac_test->timer_stop(g->n);
         
         ac->print();
-        delete ac;
+        delete ac;*/
+        
+        Local_search *ls;
+        ls = new Local_search(g);
+        
+        ls_test->timer_start();
+                ls->algorithm();
+        ls_test->timer_stop(g->n);
+        
+        cout<<"ls\n";
+        ls->print();
+        
+        delete ls;
 
         delete g;
     }

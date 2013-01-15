@@ -13,6 +13,7 @@
 #include "ant_colony.h"
 #include "brute.h"
 #include "greedy.h"
+#include "test_operations.h"
 
 
 using namespace std;
@@ -21,48 +22,64 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-    Graph *g = new Graph(10,10); 
-    //g->graph_print();
+   
+    Test_operations *brute_test, *nn_test, *fi_test, *ac_test;
     
+    brute_test = new Test_operations("brute.csv", "Brute force algorithm");
+    nn_test = new Test_operations("greedy.csv", "Nearest Neighbour algorithm");
+    fi_test = new Test_operations("farthest_insertion.csv", "Farthest Insertion Algorithm");
+    ac_test = new Test_operations("ant_colony.csv", "ant_colony_algorithm");
+    
+    for(int i = 5; i < 12; i++){
+        
+        Graph *g = new Graph(i,10); 
+        //g->graph_print();
 
-    Brute *br = new Brute();
-    cout<<"brute: "<<br->brutealgorithm(g)<<endl;
-    br->print(g->n);
-    delete br;
-    
 
-    Greedy *nn = new Greedy();
-    cout<<"greedy: "<<nn->nearest_neighbour(g)<<endl;
-    delete nn;
-    
-    Farthest_insertion *fi = new Farthest_insertion();
-    fi->initialize(g);
-    fi->algorithm(g);
-    fi->print(g);
-    
-    fi->clear();
-    delete fi;
-    
-    srand(time(NULL));
-    //graf, pocz. poziom feromonu, współczynnik odparowania feromonu, ilość mrówek, alfa, beta
-    Ant_colony *ac = new Ant_colony(g, 1, 0.5, 20, 1, 5);
-    //graf, ilość iteracji
-    ac->algorithm(g, 20);
-    ac->print();
-    delete ac;
-    
-    ac = new Ant_colony(g, 1, 0.5, 100, 1, 5);
-    ac->algorithm(g, 20);
-    ac->print();
-    delete ac;
-    
-    ac = new Ant_colony(g, 1, 0.5, 100, 1, 5);
-    ac->algorithm(g, 50);
-    ac->print();
-    delete ac;
-    
-    delete g;
-    
+        Brute *br = new Brute();
+        
+        brute_test->timer_start();
+                br->brutealgorithm(g);
+        brute_test->timer_stop(g->n); 
+        
+        br->print(g->n);
+        delete br;
+
+
+        Greedy *nn = new Greedy();
+        
+        nn_test->timer_start();
+                nn->nearest_neighbour(g);
+        nn_test->timer_stop(g->n);
+        
+        delete nn;
+
+        
+        Farthest_insertion *fi = new Farthest_insertion();
+        fi->initialize(g);
+                
+        fi_test->timer_start();
+                fi->algorithm(g);
+        fi_test->timer_stop(g->n);
+                
+        fi->print(g);
+        fi->clear();
+        delete fi;
+
+        srand(time(NULL));
+        //graf, pocz. poziom feromonu, współczynnik odparowania feromonu, ilość mrówek, alfa, beta
+        Ant_colony *ac = new Ant_colony(g, 1, 0.5, 20, 1, 5);
+        
+        ac_test->timer_start();
+            //graf, ilość iteracji
+            ac->algorithm(g, 20);
+        ac_test->timer_stop(g->n);
+        
+        ac->print();
+        delete ac;
+
+        delete g;
+    }
     return 0;
 }
 

@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/graph.o \
 	${OBJECTDIR}/brute.o \
 	${OBJECTDIR}/ant_colony.o \
+	${OBJECTDIR}/test_operations.o \
 	${OBJECTDIR}/greedy.o \
 	${OBJECTDIR}/farthest_insertion.o
 
@@ -86,6 +87,11 @@ ${OBJECTDIR}/ant_colony.o: ant_colony.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ant_colony.o ant_colony.cpp
+
+${OBJECTDIR}/test_operations.o: test_operations.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/test_operations.o test_operations.cpp
 
 ${OBJECTDIR}/greedy.o: greedy.cpp 
 	${MKDIR} -p ${OBJECTDIR}

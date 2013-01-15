@@ -9,6 +9,7 @@
       <itemPath>farthest_insertion.h</itemPath>
       <itemPath>graph.h</itemPath>
       <itemPath>greedy.h</itemPath>
+      <itemPath>test_operations.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -23,6 +24,7 @@
       <itemPath>graph.cpp</itemPath>
       <itemPath>greedy.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>test_operations.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"

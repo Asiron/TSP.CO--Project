@@ -15,7 +15,7 @@ class Brute{
               //tablica zawierajaca wierzcholki w kolejnosci odwiedzania
               int *path;
       public:
-  
+          int path_length;
              //algorytm wlasciwy
              int brutealgorithm(Graph *g);
              //funkcja permutujaca ciag odwiedzanych wierzcholkow

@@ -28,7 +28,7 @@ class Test_operations{
             ~Test_operations();
             
             void timer_start(); //rozpoczyna odlicznaie czasu
-            void timer_stop(int nodes_num);     //zatrzymuje "stoper", oblicza czas i zrzuca dane do pliku
+            void timer_stop(int nodes_num, int path_length);     //zatrzymuje "stoper", oblicza czas i zrzuca dane do pliku
             void time_print(int nodes_num);     //wypisuje dane na ekran
 };
 

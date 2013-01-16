@@ -16,6 +16,7 @@ class Greedy{
       private:
               bool *visited;
       public:
+          int path_length;
              int nearest_neighbour(Graph *g);
              int find_nearest(Graph *g, int point);
 };

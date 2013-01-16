@@ -23,12 +23,14 @@ private:
     bool change_for_better;
     int temp_i;
     int temp_j;
-    int length;
+    
     
     int *path;
     int *temp_path;
     
 public:
+    int length;
+    
     Local_search(Graph *g);
     ~Local_search();
     

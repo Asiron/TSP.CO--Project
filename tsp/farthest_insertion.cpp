@@ -31,6 +31,11 @@ void Farthest_insertion::algorithm(Graph *g){
              fi_visited[temp_node] = true;
              fi_path_length++;
     }
+    
+     for(fi_list_it = fi_path.begin(); fi_list_it != --fi_path.end(); ++fi_list_it){
+        list<int>::iterator next = fi_list_it;
+        path_length += g->graph[*fi_list_it][*(++next)];
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////
 int Farthest_insertion::search_farthest_node(Graph *g){

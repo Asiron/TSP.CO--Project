@@ -15,6 +15,8 @@
 
 class Farthest_insertion{
  public:
+     int path_length;
+     
     //inicjalizacja potrzebnych do działąnia algorytmu struktur 
     void initialize(Graph *g);
     //sprzatanie po sobie
@@ -27,9 +29,9 @@ class Farthest_insertion{
 private:   
     int search_farthest_node(Graph *g);
     void insert_farthest_node(int node, Graph *g);
-    
-    bool *fi_visited;
     int fi_path_length;
+    bool *fi_visited;
+    
     list<int> fi_path;
     list<int>::iterator fi_list_it;
 

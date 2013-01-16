@@ -32,27 +32,27 @@ int main(int argc, char** argv) {
     ac_test = new Test_operations("ant_colony.csv", "ant_colony_algorithm");
     ls_test = new Test_operations("Local_search.csv", "local_search_algorithm");
     
-    for(int i = 5; i < 12; i++){
+    for(int i = 10; i < 11; i++){
         
         Graph *g = new Graph(i,10); 
-        //g->graph_print();
+        g->graph_print();
 
 
         Brute *br = new Brute();
         
         brute_test->timer_start();
-                br->brutealgorithm(g);
-        brute_test->timer_stop(g->n); 
+                cout<< br->brutealgorithm(g)<<endl;
+        brute_test->timer_stop(g->n, br->path_length); 
         
         br->print(g->n);
         delete br;
-        /*
+        
 
-        Greedy *nn = new Greedy();
+        /*Greedy *nn = new Greedy();
         
         nn_test->timer_start();
                 nn->nearest_neighbour(g);
-        nn_test->timer_stop(g->n);
+        nn_test->timer_stop(g->n, nn->path_length);
         
         delete nn;
 
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
                 
         fi_test->timer_start();
                 fi->algorithm(g);
-        fi_test->timer_stop(g->n);
+        fi_test->timer_stop(g->n, fi->path_length);
                 
         fi->print(g);
         fi->clear();
@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
         ac_test->timer_start();
             //graf, ilość iteracji
             ac->algorithm(g, 20);
-        ac_test->timer_stop(g->n);
+        ac_test->timer_stop(g->n, ac->best_path_length);
         
         ac->print();
         delete ac;*/
@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
         
         ls_test->timer_start();
                 ls->algorithm();
-        ls_test->timer_stop(g->n);
+        ls_test->timer_stop(g->n, ls->length);
         
         cout<<"ls\n";
         ls->print();

@@ -21,15 +21,16 @@ Local_search::~Local_search(){
 int Local_search::check_path_length(int *p){
     int sum = 0;
     for(int i = 1; i < g->n; ++i){
-        sum += g->graph[p[i-1]][p[i]];
+        sum += g->graph[p[i]][p[i-1]];
     }
+    sum += g->graph[p[g->n - 1]][p[0]];
     return sum;
 }
 
 void Local_search::algorithm(){
+    length = check_path_length(path);
     do{
         change_for_better = false;
-        length = check_path_length(path);
         
         for(int i = 0; i < g->n; ++i){
             temp_path[i] = path[i];
@@ -43,7 +44,6 @@ void Local_search::algorithm(){
                         temp_i = i;
                         temp_j = j;
                         change_for_better = true;
-                        length = l;
                     }
                     swap(temp_path[i], temp_path[j]);
                 }
@@ -52,6 +52,7 @@ void Local_search::algorithm(){
         if(change_for_better){
             swap(path[temp_i], path[temp_j]);
         }
+        length = check_path_length(path);
     }while(change_for_better);
 }
 

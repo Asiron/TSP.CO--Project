@@ -9,7 +9,7 @@ Test_operations::Test_operations(string fname, char* algorithm_name){
     filename = "pomiary/"+filename;
     file.open(filename.c_str(), fstream::in|fstream::out|fstream::trunc);
     file << algorithm_name << "\n";
-    file << "liczba wierzcholkow,czas [ms]\n";
+    file << "liczba wierzcholkow,czas [ms],dlugosc trasy\n";
     file.close();
 }
 
@@ -21,7 +21,7 @@ void Test_operations::timer_start(){
     gettimeofday(&start, NULL);
 }
 
-void Test_operations::timer_stop(int nodes_num){
+void Test_operations::timer_stop(int nodes_num, int path_length){
     gettimeofday(&end, NULL);
 
     seconds  = end.tv_sec  - start.tv_sec;
@@ -31,7 +31,7 @@ void Test_operations::timer_stop(int nodes_num){
     mtime = (long double)(seconds * 1000 * 1000 + useconds)/1000;
     
     file.open(filename.c_str(), fstream::in|fstream::out|fstream::app);
-    file << nodes_num << "," << mtime << "\n";
+    file << nodes_num << "," << mtime << "," << path_length << "\n";
     file.close();
 }
 

@@ -28,5 +28,7 @@ int Greedy :: nearest_neighbour(Graph *g){
               next = tmp;
     }
     distance += g->graph[tmp][0];
+    
+    path_length = distance;
 return distance;    
 }

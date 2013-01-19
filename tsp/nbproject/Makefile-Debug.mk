@@ -21,8 +21,8 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux-x86
-CND_DLIB_EXT=so
+CND_PLATFORM=GNU-MacOSX
+CND_DLIB_EXT=dylib
 CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
@@ -38,7 +38,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/graph.o \
 	${OBJECTDIR}/brute.o \
+	${OBJECTDIR}/genetic.o \
 	${OBJECTDIR}/ant_colony.o \
+	${OBJECTDIR}/genome.o \
 	${OBJECTDIR}/local_search.o \
 	${OBJECTDIR}/test_operations.o \
 	${OBJECTDIR}/greedy.o \
@@ -84,10 +86,20 @@ ${OBJECTDIR}/brute.o: brute.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/brute.o brute.cpp
 
+${OBJECTDIR}/genetic.o: genetic.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/genetic.o genetic.cpp
+
 ${OBJECTDIR}/ant_colony.o: ant_colony.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/ant_colony.o ant_colony.cpp
+
+${OBJECTDIR}/genome.o: genome.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF $@.d -o ${OBJECTDIR}/genome.o genome.cpp
 
 ${OBJECTDIR}/local_search.o: local_search.cpp 
 	${MKDIR} -p ${OBJECTDIR}

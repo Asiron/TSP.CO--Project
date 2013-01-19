@@ -13,6 +13,7 @@
 #include "ant_colony.h"
 #include "brute.h"
 #include "greedy.h"
+#include "genome.h"
 #include "test_operations.h"
 #include "local_search.h"
 
@@ -90,9 +91,20 @@ int main(int argc, char** argv) {
         cout<<"ls\n";
         ls->print();
         
+        
+        genome* ge = new genome(g);
+        cout << "printing genome" << endl;
+        ge->printGenome();
+        ge->evaluate();
+        
         delete ls;
 
+
+
+        delete ge;
         delete g;
+        
+        
     }
     return 0;
 }

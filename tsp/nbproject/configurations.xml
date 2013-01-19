@@ -22,6 +22,10 @@
       <itemPath>ant_colony.cpp</itemPath>
       <itemPath>brute.cpp</itemPath>
       <itemPath>farthest_insertion.cpp</itemPath>
+      <itemPath>genetic.cpp</itemPath>
+      <itemPath>genetic.h</itemPath>
+      <itemPath>genome.cpp</itemPath>
+      <itemPath>genome.h</itemPath>
       <itemPath>graph.cpp</itemPath>
       <itemPath>greedy.cpp</itemPath>
       <itemPath>local_search.cpp</itemPath>
@@ -49,6 +53,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
+          <commandlineTool>g++</commandlineTool>
           <commandLine>-Wall</commandLine>
           <warningLevel>2</warningLevel>
         </ccTool>

@@ -1,0 +1,120 @@
+Calibrating GA for TSP with 10 vertices 
+
+Optimal solution found with brute: 206
+Starting from length 500
+
+New best: 380
+
+Longliving: 3
+Population: 12
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 369
+
+Longliving: 3
+Population: 12
+Crossover: 0.12
+Mutation: 0.03
+
+New best: 361
+
+Longliving: 3
+Population: 12
+Crossover: 0.18
+Mutation: 0.03
+
+New best: 337
+
+Longliving: 3
+Population: 13
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 327
+
+Longliving: 3
+Population: 13
+Crossover: 0.27
+Mutation: 0.03
+
+New best: 284
+
+Longliving: 3
+Population: 14
+Crossover: 0.27
+Mutation: 0.03
+
+New best: 259
+
+Longliving: 3
+Population: 25
+Crossover: 0.09
+Mutation: 0.03
+
+New best: 254
+
+Longliving: 7
+Population: 25
+Crossover: 0.18
+Mutation: 0.03
+
+New best: 206
+
+Longliving: 4
+Population: 28
+Crossover: 0.09
+Mutation: 0.03Calibrating GA for TSP with 10 vertices 
+
+Optimal solution found with brute: 167
+Starting from length 500
+
+New best: 378
+
+Longliving: 3
+Population: 12
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 243
+
+Longliving: 3
+Population: 12
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 234
+
+Longliving: 3
+Population: 14
+Crossover: 0.15
+Mutation: 0.03
+
+New best: 192
+
+Longliving: 5
+Population: 19
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 189
+
+Longliving: 6
+Population: 36
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 173
+
+Longliving: 10
+Population: 40
+Crossover: 0.15
+Mutation: 0.03
+
+New best: 172
+
+Longliving: 14
+Population: 49
+Crossover: 0.21
+Mutation: 0.03
+

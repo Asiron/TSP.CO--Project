@@ -1,0 +1,73 @@
+Calibrating GA for TSP with 10 vertices 
+
+Optimal solution found with brute: 148
+Starting from length 500
+
+New best: 308
+
+Longliving: 3
+Population: 12
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 292
+
+Longliving: 3
+Population: 12
+Crossover: 0.15
+Mutation: 0.03
+
+New best: 281
+
+Longliving: 3
+Population: 12
+Crossover: 0.27
+Mutation: 0.03
+
+New best: 245
+
+Longliving: 3
+Population: 13
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 170
+
+Longliving: 3
+Population: 14
+Crossover: 0.15
+Mutation: 0.03
+
+Calibrating GA for TSP with 10 vertices 
+
+Optimal solution found with brute: 290
+Starting from length 500
+
+New best: 369.233
+
+Longliving: 3
+Population: 12
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 344.633
+
+Longliving: 3
+Population: 12
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 319
+
+Longliving: 3
+Population: 12
+Crossover: 0.24
+Mutation: 0.03
+
+New best: 306.467
+
+Longliving: 3
+Population: 18
+Crossover: 0.15
+Mutation: 0.03
+

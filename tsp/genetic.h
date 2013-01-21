@@ -2,20 +2,35 @@
 #define	GENETIC_H
 
 #include <cstdlib>
-#include <list>
+#include <queue>
 #include <algorithm>
 #include "graph.h"
+#include "Genome.h"
 
 using namespace std;
 
-class genetic {
-public:
-    genetic();
-    genetic(Graph* graph);
-    genetic(const genetic& orig);
-    ~genetic();
-private:
+class Genome;
+class CompareGenome;
 
+class Genetic {
+public:
+    Genetic(Graph* graph, int epochs, float crossoverRate, float mutationRate, int populationSize, int eliteSize);
+    Genetic(const Genetic& orig);
+    ~Genetic();
+    
+    Genome& run();
+    
+private:
+    float       mutationRate;
+    float       crossoverRate;
+    int         populationSize;
+    int         eliteSize;
+    int         epochs;
+    Graph       *graph;
+    vector<Genome*>      *population;
+    Genome      result;
+    CompareGenome *comp;
+    
 };
 #endif	/* GENETIC_H */
 

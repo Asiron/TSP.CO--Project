@@ -14,6 +14,7 @@
 #include "brute.h"
 #include "greedy.h"
 #include "genome.h"
+#include "genetic.h"
 #include "test_operations.h"
 #include "local_search.h"
 
@@ -35,14 +36,15 @@ int main(int argc, char** argv) {
     
     for(int i = 10; i < 11; i++){
         
-        Graph *g = new Graph(i,10); 
+        Graph *g = new Graph(i,100); 
         g->graph_print();
 
 
         Brute *br = new Brute();
         
         brute_test->timer_start();
-                cout<< br->brutealgorithm(g)<<endl;
+        int result = br->brutealgorithm(g);
+                cout<< result << endl;
         brute_test->timer_stop(g->n, br->path_length); 
         
         br->print(g->n);
@@ -91,17 +93,55 @@ int main(int argc, char** argv) {
         cout<<"ls\n";
         ls->print();
         
+
         
-        genome* ge = new genome(g);
-        cout << "printing genome" << endl;
-        ge->printGenome();
-        ge->evaluate();
+        ofstream file;
+        file.open("ga_calibration.txt", fstream::app);
         
+        
+        file << "Calibrating GA for TSP with " << g->n << " vertices " << endl << endl;
+        file << "Optimal solution found with brute: " << result << endl ;
+        file << "Starting from length 500" << endl << endl ;
+        
+        int longliving = 0;
+        int population = 0;
+        double xover = 0.0;
+        double mut = 0.0;
+        
+        double best = 500;
+        for(int i=10; i<50; i++){
+            for(int j=3; j<i/3; j++){
+                for(double k=0.03; k<0.3; k+=0.03){
+                    for(double l=0.03; k<0.3; k+=0.03){
+                        Genetic ga(g, 100, k, l, i, j);
+                        //int temp = ga.run().evaluate();
+                        double temp = 0;
+                        for(int m=0; m<30; m++)
+                            temp += ga.run().evaluate();
+                        temp /= 30;
+           
+                        if( temp < best) {
+                            best = temp;
+                            longliving = j;
+                            population = i;
+                            xover = k;
+                            mut = l;
+                            file << "New best: " << best << endl << endl;
+                            file << "Longliving: " << longliving << endl;
+                            file << "Population: " << population << endl;
+                            file << "Crossover: " << xover << endl;
+                            file << "Mutation: " << mut << endl << endl;
+                        }
+                    }
+                }
+            }
+        }
+        
+        file.close();
+
+
+
         delete ls;
-
-
-
-        delete ge;
         delete g;
         
         

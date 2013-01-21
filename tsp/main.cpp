@@ -26,12 +26,14 @@ int main(int argc, char** argv) {
    
     Test_operations *brute_test, *nn_test, *fi_test, *ac_test, *ls_test;
     
-    brute_test = new Test_operations("brute.csv", "Brute force algorithm");
+    /*brute_test = new Test_operations("brute.csv", "Brute force algorithm");
     nn_test = new Test_operations("greedy.csv", "Nearest Neighbour algorithm");
     fi_test = new Test_operations("farthest_insertion.csv", "Farthest Insertion Algorithm");
     ac_test = new Test_operations("ant_colony.csv", "ant_colony_algorithm");
     ls_test = new Test_operations("Local_search.csv", "local_search_algorithm");
-    
+    */
+   
+    /*
     for(int i = 10; i < 11; i++){
         
         Graph *g = new Graph(i,10); 
@@ -48,7 +50,7 @@ int main(int argc, char** argv) {
         delete br;
         
 
-        /*Greedy *nn = new Greedy();
+        Greedy *nn = new Greedy();
         
         nn_test->timer_start();
                 nn->nearest_neighbour(g);
@@ -78,7 +80,7 @@ int main(int argc, char** argv) {
         ac_test->timer_stop(g->n, ac->best_path_length);
         
         ac->print();
-        delete ac;*/
+        delete ac;
         
         Local_search *ls;
         ls = new Local_search(g);
@@ -93,7 +95,53 @@ int main(int argc, char** argv) {
         delete ls;
 
         delete g;
+    }*/
+
+    Graph *g = new Graph(100,50);
+    srand(time(NULL));
+    
+    ac_test = new Test_operations("ACO_const_ant_number_10.csv","ilosc wierzcholkow w tym wypadku jest iloscia iteracji algorytmu\n");
+    //graf, pocz. poziom feromonu, współczynnik odparowania feromonu, ilość mrówek, alfa, beta
+    for(int i = 10; i <= 105; i+=5){
+    
+        Ant_colony *ac = new Ant_colony(g, 1, 0.5, 10, 1, 5);
+        
+        ac_test->timer_start();
+            //graf, ilość iteracji
+            ac->algorithm(g, i);
+        ac_test->timer_stop(i, ac->best_path_length);
+        delete ac;
+        cout<<"const_ant: "<<i<<endl;
     }
+    delete ac_test;
+    
+    ac_test = new Test_operations("ACO_const_iterations_number_10.csv","ilosc wierzcholkow w tym wypadku jest iloscia mrowek\n");
+    for(int i = 10; i <= 105; i+=5){
+    
+        Ant_colony *ac = new Ant_colony(g, 1, 0.5, i, 1, 5);
+        
+        ac_test->timer_start();
+            //graf, ilość iteracji
+            ac->algorithm(g, 10);
+        ac_test->timer_stop(i, ac->best_path_length);
+        delete ac;
+        cout<<"const_iter: "<<i<<endl;
+    }
+    
+    ac_test = new Test_operations("ACO_increasing_ants_and _iterations.csv","ilosc wierzcholkow w tym wypadku jest iloscia mrowek i iteracji\n");
+    for(int i = 10; i <= 105; i+=5){
+    
+        Ant_colony *ac = new Ant_colony(g, 1, 0.5, i, 1, 5);
+        
+        ac_test->timer_start();
+            //graf, ilość iteracji
+            ac->algorithm(g, i);
+        ac_test->timer_stop(i, ac->best_path_length);
+        delete ac;
+        cout<<"const_nth: "<<i<<endl;
+    }
+    
+    delete ac_test;
     return 0;
 }
 

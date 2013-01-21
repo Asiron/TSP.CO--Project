@@ -71,3 +71,17 @@ Population: 18
 Crossover: 0.15
 Mutation: 0.03
 
+New best: 304.167
+
+Longliving: 4
+Population: 33
+Crossover: 0.12
+Mutation: 0.03
+
+New best: 303
+
+Longliving: 5
+Population: 33
+Crossover: 0.24
+Mutation: 0.03
+

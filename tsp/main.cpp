@@ -25,7 +25,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
    
-    Test_operations *brute_test, *nn_test, *fi_test, *ac_test, *ls_test;
+    Test_operations *brute_test, *nn_test, *fi_test, *ac_test, *ls_test, *ga_test;
     
     /*brute_test = new Test_operations("brute.csv", "Brute force algorithm");
     nn_test = new Test_operations("greedy.csv", "Nearest Neighbour algorithm");
@@ -33,7 +33,6 @@ int main(int argc, char** argv) {
     ac_test = new Test_operations("ant_colony.csv", "ant_colony_algorithm");
      */ 
     ls_test = new Test_operations("Local_search.csv", "local_search_algorithm");
-     
    
 
     for(int i = 100; i < 101; i++){
@@ -95,10 +94,28 @@ int main(int argc, char** argv) {
         cout<<"ls\n";
         ls->print();
         
-        Genetic ga(g, 10000, 0.06, 0.03, 50, 5);
-        cout << ga.run().evaluate() << endl;
+        ga_test = new Test_operations("ga_benchmark.csv", "Number of vertices from 50 to 500, population size 50, number of epochs 50*vertices, xover 0.06, mutation 0.03, elite size 5");
+//        for(int i=50; i<500; i+=50){
+//            Graph *graph = new Graph(i,100);
+//            Genetic ga(graph, i*20, 0.06, 0.03, 50, 5);
+//            ga_test->timer_start();
+//            int result = ga.run().evaluate();
+//            ga_test->timer_stop(i, result);
+//            delete graph;
+//        }
+        
+        for(int i=100; i<10000; i+=100){
+            Genetic ga(g, i, 0.06, 0.03, 50, 5);
+            for(int j=0; j<5; j++){
+                ga_test->timer_start();
+                int result = ga.run().evaluate();
+                ga_test->timer_stop(i, result);
+            }
+        }
         
         delete ls;
+        delete ls_test;
+        delete ga_test;
         delete g;
     }
 

@@ -1,0 +1,11 @@
+Number of vertices from 50 to 500, population size 50, number of epochs 50*vertices, xover 0.06, mutation 0.03, elite size 5
+liczba wierzcholkow,czas [ms],dlugosc trasy
+50,4204.27,728
+100,19887.1,1067
+150,56282.5,1564
+200,113704,2234
+250,199200,2342
+300,340778,2877
+350,512544,3387
+400,721336,3596
+450,1.06343e+06,4147

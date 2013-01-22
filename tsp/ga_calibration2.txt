@@ -1,0 +1,154 @@
+Calibrating GA for TSP with 100 vertices 
+
+Optimal solution found with brute: 420
+Starting from length2100
+
+Calibrating GA for TSP with 100 vertices 
+
+Optimal solution found with brute: 429
+Starting from length2145
+
+New best: 2112
+
+Longliving: 3
+Population: 12
+Crossover: 0.3
+Mutation: 0.03
+
+New best: 1967
+
+Longliving: 3
+Population: 14
+Crossover: 0.33
+Mutation: 0.03
+
+Calibrating GA for TSP with 50 vertices 
+
+Optimal solution found with brute: 548
+Starting from length2740
+
+New best: 2270
+
+Longliving: 3
+Population: 12
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 2196
+
+Longliving: 3
+Population: 12
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 2174
+
+Longliving: 3
+Population: 12
+Crossover: 0.09
+Mutation: 0.03
+
+New best: 2066
+
+Longliving: 3
+Population: 12
+Crossover: 0.24
+Mutation: 0.03
+
+New best: 2044
+
+Longliving: 3
+Population: 13
+Crossover: 0.36
+Mutation: 0.03
+
+New best: 1982
+
+Longliving: 3
+Population: 14
+Crossover: 0.21
+Mutation: 0.03
+
+New best: 1940
+
+Longliving: 3
+Population: 15
+Crossover: 0.45
+Mutation: 0.03
+
+New best: 1829
+
+Longliving: 4
+Population: 16
+Crossover: 0.3
+Mutation: 0.03
+
+New best: 1792
+
+Longliving: 3
+Population: 21
+Crossover: 0.12
+Mutation: 0.03
+
+New best: 1759
+
+Longliving: 3
+Population: 21
+Crossover: 0.21
+Mutation: 0.03
+
+New best: 1679
+
+Longliving: 3
+Population: 25
+Crossover: 0.09
+Mutation: 0.03
+
+Calibrating GA for TSP with 50 vertices 
+
+Optimal solution found with brute: 472
+Starting from length2360
+
+New best: 2200
+
+Longliving: 3
+Population: 10
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 2031
+
+Longliving: 3
+Population: 10
+Crossover: 0.15
+Mutation: 0.03
+
+New best: 1989
+
+Longliving: 4
+Population: 10
+Crossover: 0.03
+Mutation: 0.03
+
+New best: 1845
+
+Longliving: 4
+Population: 11
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 1814
+
+Longliving: 5
+Population: 12
+Crossover: 0.06
+Mutation: 0.03
+
+New best: 1736
+
+Longliving: 5
+Population: 18
+Crossover: 0.03
+Mutation: 0.03
+
+7 6 3 0 1 5 8 2 9 4

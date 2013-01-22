@@ -16,7 +16,7 @@ class CompareGenome;
 /* Main class for running GA */
 class Genetic {
 public:
-    /* Constructor. Creates object and initalizes all its values */
+    /* Constructor. Creates object and initializes all its values */
     Genetic(Graph* graph, int epochs, float crossoverRate, float mutationRate, int populationSize, int eliteSize);
     
     /* Copy constructor. Creates copy of an object*/

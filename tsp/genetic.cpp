@@ -7,7 +7,6 @@
 
 #include "Genetic.h"
 
-//#define DEBUG_GENETIC
 
 Genetic::Genetic(Graph* graph, int epochs, float crossoverRate, float mutationRate, int populationSize, int eliteSize) {
     this->graph = graph;
@@ -37,12 +36,6 @@ Genetic::Genetic(const Genetic& orig) {
 
 Genetic::~Genetic() {
     delete comp;
-//    if(population){
-//        for(vector<Genome*>::iterator it=population->begin(); it!=population->end(); it++){
-//        delete *it;
-//        }
-//        delete population;
-//    }
 }
 
 
@@ -54,15 +47,6 @@ Genome& Genetic::run(){
             population->pop_back();
         }
         sort(newPopulation->begin(), newPopulation->end(), *comp);
-#ifdef DEBUG_GENETIC
-        for(vector<Genome*>::iterator it=population->begin(); it != population->end(); it++){
-            cout << (*it)->evaluate() << endl;
-        }
-        cout << "???" << endl;
-        for(vector<Genome*>::iterator it=newPopulation->begin(); it != newPopulation->end(); it++){
-            cout << (*it)->evaluate() << endl;
-        }
-#endif
         for(int j=0; j<populationSize-eliteSize; ++j){
             Genome *parent = new Genome(*population->back());
             if ( rand() / RAND_MAX < mutationRate ){
@@ -71,7 +55,6 @@ Genome& Genetic::run(){
             if ( rand() / RAND_MAX < crossoverRate ){
                 parent->crossover(*newPopulation->back());
             }
-            //newPopulation->push_back(parent);
             newPopulation->insert(newPopulation->begin(), parent);
             population->pop_back();
         }

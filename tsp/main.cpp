@@ -15,6 +15,7 @@
 #include "greedy.h"
 #include "test_operations.h"
 #include "local_search.h"
+#include "genetic.h"
 
 
 using namespace std;
@@ -32,20 +33,20 @@ int main(int argc, char** argv) {
     ac_test = new Test_operations("ant_colony.csv", "ant_colony_algorithm");
     ls_test = new Test_operations("Local_search.csv", "local_search_algorithm");
     
-    for(int i = 10; i < 11; i++){
+    for(int i = 200; i < 201; i++){
         
         Graph *g = new Graph(i,10); 
-        g->graph_print();
+        //g->graph_print();
 
 
-        Brute *br = new Brute();
-        
-        brute_test->timer_start();
-                cout<< br->brutealgorithm(g)<<endl;
-        brute_test->timer_stop(g->n, br->path_length); 
-        
-        br->print(g->n);
-        delete br;
+//        Brute *br = new Brute();
+//        
+//        brute_test->timer_start();
+//                cout<< br->brutealgorithm(g)<<endl;
+//        brute_test->timer_stop(g->n, br->path_length); 
+//        
+//        br->print(g->n);
+//        delete br;
         
 
         /*Greedy *nn = new Greedy();
@@ -89,6 +90,9 @@ int main(int argc, char** argv) {
         
         cout<<"ls\n";
         ls->print();
+        
+        Genetic ga(g, 10000, 0.06, 0.03, 50, 5);
+        cout << ga.run().evaluate() << endl;
         
         delete ls;
 
